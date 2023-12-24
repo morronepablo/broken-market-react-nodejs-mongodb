@@ -25,7 +25,7 @@ exports.login = async (req, res) => {
 
   try {
     // 1. get user from db using email
-    const dbUser = await User.findOne({ email });
+    const dbUser = await User.findOne({ email }).select("+password");
 
     // 2. check if user exist
     if (!dbUser) {
