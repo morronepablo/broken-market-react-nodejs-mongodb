@@ -1,2 +1,4 @@
 PORT=4000
 MONGODB_CS="mongodb+srv://brokang:brokang123@cluster0.iek3us6.mongodb.net/?retryWrites=true&w=majority"
+JWT_SECRET="this_is_brokang_secret"
+JWT_SECRET_EXP=7d
