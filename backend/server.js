@@ -16,10 +16,25 @@ const connectToMango = () => {
     });
 };
 
+// Handle uncaught exceptions
+process.on("uncaughtException", (err) => {
+  console.log("Error = ", +err.message);
+  console.log("Shutting down the application for uncaught exception");
+});
+
 connectToMango();
 
 const port = process.env.PORT;
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log("Our app is running on PORT " + port);
+});
+
+process.on("unhandledRejection", (err) => {
+  console.log(`${err.name} ${err.message}`);
+  // close server
+  server.close(() => {
+    // exist node process
+    process.exit(1);
+  });
 });

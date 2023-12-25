@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 const userRouter = require("./routes/userRoutes");
+const AppError = require("./utils/AppError");
+const GlobalErrorHandler = require("./controller/errorController");
 
 dotenv.config();
 
@@ -20,5 +22,16 @@ app.get("/test", (req, res) => {
 });
 
 app.use("/api/v1/user", userRouter);
+
+app.all("*", (req, res, next) => {
+  next(
+    new AppError(
+      `The route you are trying to access is not defined ${req.originalUrl}`,
+      400
+    )
+  );
+});
+
+app.use(GlobalErrorHandler);
 
 module.exports = app;
