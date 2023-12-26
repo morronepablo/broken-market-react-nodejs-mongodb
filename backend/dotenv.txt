@@ -3,3 +3,7 @@ MONGODB_CS="mongodb+srv://brokang:brokang123@cluster0.iek3us6.mongodb.net/?retry
 JWT_SECRET="this_is_brokang_secret"
 JWT_SECRET_EXP=7d
 NODE_ENV=development
+NOVU_KEY=6b850a2e2cc76d3271c452560f719b4b
+ACTIVATION_SECRET="activation_secret_form_brokang"
+FRONTEND_URL="http://localhost:3000"
+
