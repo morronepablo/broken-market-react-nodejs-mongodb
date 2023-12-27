@@ -4,9 +4,11 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-const userRouter = require("./routes/userRoutes");
 const AppError = require("./utils/AppError");
 const GlobalErrorHandler = require("./controller/errorController");
+
+const userRouter = require("./routes/userRoutes");
+const productRouter = require("./routes/productRoutes");
 
 dotenv.config();
 
@@ -22,6 +24,7 @@ app.get("/test", (req, res) => {
 });
 
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/product", productRouter);
 
 app.all("*", (req, res, next) => {
   next(
