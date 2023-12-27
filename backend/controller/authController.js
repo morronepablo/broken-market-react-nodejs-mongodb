@@ -248,7 +248,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 //Load user
 exports.loadUser = catchAsync(async (req, res, next) => {
   const userId = req.user.id;
-  const user = await User.findById(userId).populate("likes");
+  const user = await User.findById(userId);
 
   res.status(200).json({
     success: true,
