@@ -65,6 +65,11 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("passwordChangedAt") || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000;
+});
+
 // instance method to hash password
 userSchema.methods.comparePassword = async function (userPassword, dbPassword) {
   return await bcrypt.compare(userPassword, dbPassword);
@@ -84,6 +89,15 @@ userSchema.methods.generateResetToken = function () {
   this.passswordResetExpires = Date.now() + 10 * 60 * 1000;
 
   return resetToken;
+};
+
+// instance method to check if password was change before the token issued
+userSchema.methods.changedPasswordAfter = function (jwtTimeSpan) {
+  if (this.passwordChangedAt) {
+    const changedTime = parseInt(this.passwordChangedAt.getTime() / 1000);
+    return jwtTimeSpan < changedTime;
+  }
+  return false;
 };
 
 const User = mongoose.model("User", userSchema);
