@@ -149,14 +149,14 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   // 4. send reset token to users email
   try {
-    await novu.trigger("password-reset-O4wxRlK3N", {
+    await novu.trigger("password-reset", {
       to: {
         subscriberId: user?._id,
         email: user.email,
       },
       payload: {
         resetLink: urlReset,
-        securityEmail: "brokang@gmail.com",
+        securityEmail: "morronepablo@gmail.com",
       },
     });
   } catch (error) {
