@@ -270,13 +270,3 @@ exports.logoutUser = catchAsync(async (req, res, next) => {
     message: "User logged out successfully",
   });
 });
-
-//get all users
-exports.getUsers = catchAsync(async (req, res, next) => {
-  const users = await User.find();
-
-  res.status(200).json({
-    success: true,
-    users,
-  });
-});
