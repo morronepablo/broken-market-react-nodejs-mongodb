@@ -10,6 +10,7 @@ const GlobalErrorHandler = require("./controller/errorController");
 const userRouter = require("./routes/userRoutes");
 const productRouter = require("./routes/productRoutes");
 const followRouter = require("./routes/followerRoutes");
+const subscriptionRoutes = require("./routes/subscriptionRoutes");
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.get("/test", (req, res) => {
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/follow", followRouter);
+app.use("/api/v1/subscription", subscriptionRoutes);
 
 app.all("*", (req, res, next) => {
   next(
