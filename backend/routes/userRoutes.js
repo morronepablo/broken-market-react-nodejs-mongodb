@@ -18,6 +18,10 @@ const {
   getSingleUser,
   getUsers,
   updateMe,
+  addAddress,
+  removeAddress,
+  addWithdrawalAccount,
+  removeWithdrawalAccount,
 } = require("../controller/userController");
 
 const router = express.Router();
@@ -37,9 +41,17 @@ router.route("/updatePassword").put(isAuthenticated, updatePassword);
 router.route("/").get(isAuthenticated, restrictToAdmin("admin"), getUsers);
 router.route("/:userId").get(getSingleUser);
 router.route("/me").put(isAuthenticated, updateMe);
-
+router.route("/address/addAddress").put(isAuthenticated, addAddress);
+router
+  .route("/address/removeAddress/:addressId")
+  .put(isAuthenticated, removeAddress);
 router
   .route("/deactivate/:userId")
   .put(isAuthenticated, restrictToAdmin("admin"), deactiveUser);
+
+router.route("/account/add").post(isAuthenticated, addWithdrawalAccount);
+router
+  .route("/account/remove/:id")
+  .put(isAuthenticated, removeWithdrawalAccount);
 
 module.exports = router;

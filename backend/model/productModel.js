@@ -19,13 +19,7 @@ const productSchema = new mongoose.Schema(
     },
 
     discountPrice: Number,
-    images: [
-      {
-        id: String,
-        publicId: String,
-        url: String,
-      },
-    ],
+    images: [String],
     description: {
       type: String,
       required: [true, "A product most have a description"],

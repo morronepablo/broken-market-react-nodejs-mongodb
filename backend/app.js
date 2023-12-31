@@ -14,6 +14,7 @@ const subscriptionRoutes = require("./routes/subscriptionRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const likeRoutes = require("./routes/likeRoutes");
+const conversationRoutes = require("./routes/conversationRoutes");
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use("/api/v1/subscription", subscriptionRoutes);
 app.use("/api/v1/order", orderRoutes);
 app.use("/api/v1/review", reviewRoutes);
 app.use("/api/v1/like", likeRoutes);
+app.use("/api/v1/conversation", conversationRoutes);
 
 app.all("*", (req, res, next) => {
   next(

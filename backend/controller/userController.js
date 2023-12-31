@@ -56,7 +56,7 @@ exports.getUsers = catchAsync(async (req, res, next) => {
 
 // get a single user
 exports.getSingleUser = catchAsync(async (req, res, next) => {
-  const user = await User.findById(req.params.userId);
+  const user = await User.findById(req.params.userId).populate("likes");
 
   res.status(200).json({
     success: true,
