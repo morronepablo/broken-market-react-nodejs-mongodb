@@ -1,6 +1,6 @@
 function Carousel() {
   return (
-    <div className="carousel h-[300px] 800px:h-[400px] w-full">
+    <div className="carousel section h-[300px] 800px:h-[400px] w-full">
       <div id="slide1" className="carousel-item relative w-full">
         <img
           src="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

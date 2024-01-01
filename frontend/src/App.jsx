@@ -1,5 +1,6 @@
 import "./App.css";
 import Carousel from "./components/Carousel";
+import Categories from "./components/Categories";
 import Header from "./components/Header";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <div className="containerCustom">
         <Header />
         <Carousel />
+        <Categories />
       </div>
     </section>
   );
