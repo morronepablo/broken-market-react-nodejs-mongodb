@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { loginApi } from "./loginApi";
 
 function Login() {
   const {
@@ -8,8 +9,8 @@ function Login() {
     formState: { errors },
   } = useForm({ mode: "onTouched" });
 
-  const submitForm = (data) => {
-    console.log(data);
+  const submitForm = async (data) => {
+    await loginApi(data);
   };
 
   return (

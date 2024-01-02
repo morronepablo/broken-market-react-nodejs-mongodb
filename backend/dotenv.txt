@@ -5,5 +5,5 @@ JWT_SECRET_EXP=7d
 NODE_ENV=development
 NOVU_KEY=6b850a2e2cc76d3271c452560f719b4b
 ACTIVATION_SECRET="activation_secret_form_brokang"
-FRONTEND_URL="http://localhost:3000"
+FRONTEND_URL="http://localhost:5173"
 
