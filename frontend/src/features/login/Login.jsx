@@ -1,16 +1,23 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { loginApi } from "./loginApi";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUser } from "./login";
 
 function Login() {
+  const { mutate, isLoading } = loginUser();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm({ mode: "onTouched" });
 
-  const submitForm = async (data) => {
-    await loginApi(data);
+  const submitForm = (data) => {
+    mutate(data, {
+      onSuccess: () => {
+        navigate("/");
+      },
+    });
   };
 
   return (
@@ -98,7 +105,11 @@ function Login() {
               </Link>
             </div>
 
-            <button type="submit" className="btn btn-neutral">
+            <button
+              disabled={isLoading || !isValid || !isDirty}
+              type="submit"
+              className="btn btn-neutral"
+            >
               Submint
             </button>
             <div className="normalFlex">

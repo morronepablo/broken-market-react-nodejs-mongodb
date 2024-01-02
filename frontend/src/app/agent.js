@@ -1,9 +1,20 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "http://localhost:4000/api/v1";
 axios.defaults.withCredentials = true;
 
 const responseBody = (response) => response.data;
+
+axios.interceptors.request.use((config) => {
+  const token = localStorage.getItem("brokangToken");
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
 
 axios.interceptors.response.use(
   async (response) => response,
@@ -12,11 +23,11 @@ axios.interceptors.response.use(
 
     switch (status) {
       case 400:
-        console.log(data.message);
+        toast.error(data.message);
         break;
 
       case 403:
-        console.log("You are not allowed to do that");
+        toast.error("You are not allowed to do that");
         break;
 
       default:
