@@ -51,6 +51,8 @@ const request = {
 
 const Account = {
   login: (data) => request.post("/user/login", data),
+  loadUser: () => request.get("/user/loadUser"),
+  logoutUser: () => request.post("/user/logout", {}),
 };
 
 const agent = {

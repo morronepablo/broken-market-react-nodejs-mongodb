@@ -1,8 +1,14 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BsChatDots } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
+import { Link } from "react-router-dom";
+import { useLogout } from "../app/hooks/logoutUser";
 
-function Header() {
+function Header({ user }) {
+  const { logout } = useLogout();
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <div>
       {/* nav up bar */}
@@ -71,30 +77,49 @@ function Header() {
               </li>
             </ul>
           </div>
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-accent btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D" />
+
+          {user ? (
+            <div className="dropdown dropdown-end">
+              <div className="flex items-center gap-1">
+                <label
+                  tabIndex={0}
+                  className="btn btn-accent btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img src={user.photo} />
+                  </div>
+                </label>
+                <p className="text-bold">{user.storename}</p>
               </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
+
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </a>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <a onClick={handleLogout}>Logout</a>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <Link to={"/login"} className="btn btn-ghost mr-1">
+                Login
+              </Link>
+              <Link to={"/register"} className="btn btn-ghost">
+                Register
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 

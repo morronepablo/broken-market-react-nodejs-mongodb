@@ -5,8 +5,7 @@ export const loginUser = () => {
   const { mutate, isLoading } = useMutation({
     mutationFn: (data) => loginApi(data),
     onSuccess(data) {
-      // localStorage.setItem("brokangToken", data.token)
-      console.log(data);
+      localStorage.setItem("brokangToken", data.token);
     },
   });
 
