@@ -53,6 +53,8 @@ const Account = {
   login: (data) => request.post("/user/login", data),
   loadUser: () => request.get("/user/loadUser"),
   logoutUser: () => request.post("/user/logout", {}),
+  registerUser: (data) => request.post("/user/register", data),
+  activateUser: (data) => request.post("/user/activate", data),
 };
 
 const agent = {
