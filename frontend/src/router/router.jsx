@@ -3,6 +3,7 @@ import App from "../App";
 import HomePage from "../features/HomePage.jsx";
 import Login from "../features/login/Login.jsx";
 import Register from "../features/register/Register.jsx";
+import ActivationPage from "../features/activation/ActivationPage.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         element: <Register />,
         path: "/register",
+      },
+      {
+        element: <ActivationPage />,
+        path: "/activation",
       },
     ],
   },

@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useRegister } from "./registerUser";
 
 function Register() {
+  const { register: registerUser, isLoading } = useRegister();
   const {
     register,
     handleSubmit,
@@ -11,7 +13,7 @@ function Register() {
   } = useForm({ mode: "onTouched" });
 
   const submitForm = (data) => {
-    console.log(data);
+    registerUser(data);
   };
 
   useEffect(() => {
@@ -124,7 +126,7 @@ function Register() {
             </div>
 
             <button
-              disabled={!isDirty || !isValid}
+              disabled={!isDirty || !isValid || isLoading}
               type="submit"
               className="btn btn-neutral"
             >
